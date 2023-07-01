@@ -6,6 +6,7 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
+import { CityValidatorDirective } from './city-validator.directive';
 
 @Directive({
   selector: '[roundTrip]',
@@ -20,7 +21,7 @@ import {
 })
 export class RoundtripValidatorDirective implements Validator {
   validate(control: AbstractControl): ValidationErrors | null {
-    const group: FormGroup = control as FormGroup;
+    const group: FormGroup = control as FormGroup; // Typumwandlung
 
     const fromCtrl = group.controls['from'];
     const toCtrl = group.controls['to'];
