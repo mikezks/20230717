@@ -13,3 +13,25 @@ body {
 a {
   cursor: pointer;
 }
+
+input.ng-dirty.ng-invalid {
+  border-left: darkred 5px solid;
+}
+
+input.ng-dirty.ng-valid {
+  border-left: darkgreen 5px solid;
+}
+
+.status {
+  text-decoration: underline;
+  color: navy;
+}
+
+.status:hover {
+  text-decoration: underline;
+  color: darkgoldenrod;
+}
+
+.p40 {
+  padding: 20px;
+}
