@@ -1,0 +1,45 @@
+<div class="header">
+  <h2 class="title">Flight Search</h2>
+</div>
+
+<form>
+  <div class="form-group">
+    <label>From:</label>
+    <input [(ngModel)]="from" name="from" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>To:</label>
+    <input [(ngModel)]="to" name="to" class="form-control" />
+  </div>
+
+  <div class="form-group">
+    <button (click)="search()" class="btn btn-default">Search</button>
+  </div>
+</form>
+
+<table class="table table-condensed" *ngIf="flights.length > 0">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let f of flights" [class.selected]="f === selectedFlight">
+      <td>{{ f.id }}</td>
+      <td>{{ f.from }}</td>
+      <td>{{ f.to }}</td>
+      <td>{{ f.date | date : "dd.MM.yyyy" }}</td>
+      <td>
+        <a (click)="select(f)">Select</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="selectedFlight">
+  <pre>{{ selectedFlight | json }}</pre>
+</div>
