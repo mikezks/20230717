@@ -1,6 +1,10 @@
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FlightSearchComponent } from './flight-search.component';
+import { provideHttpClient } from '@angular/common/http';
+import { FlightService } from './flight.service';
+import { of } from 'rxjs';
 
 describe('FlightSearchComponent', () => {
   let component: FlightSearchComponent;
@@ -9,6 +13,16 @@ describe('FlightSearchComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FlightSearchComponent],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        /* {
+          provide: FlightService,
+          useValue: {
+            find: () => of([])
+          }
+        } */
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(FlightSearchComponent);
@@ -16,7 +30,7 @@ describe('FlightSearchComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should have undefined selected flights initially', () => {
+    expect(component.selectedFlight).toBeUndefined();
   });
 });
