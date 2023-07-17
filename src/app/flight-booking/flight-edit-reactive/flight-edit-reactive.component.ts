@@ -1,20 +1,20 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Flight } from '../model/flight';
+import { Flight } from '../../model/flight';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { validateCity } from '../shared/validation/city-validator';
+import { validateCity } from '../../shared/validation/city-validator';
 import { FlightService } from '../flight-search/flight.service';
-import { validateAsyncCity } from '../shared/validation/async-city-validator';
-import { ValidationErrorsComponent } from '../shared/validation-errors/validation-errors.component';
-import { validateRoundTrip } from '../shared/validation/roundtrip-validator';
+import { validateAsyncCity } from '../../shared/validation/async-city-validator';
+import { ValidationErrorsComponent } from '../../shared/validation-errors/validation-errors.component';
+import { validateRoundTrip } from '../../shared/validation/roundtrip-validator';
 
 @Component({
   selector: 'app-flight-edit-reactive',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ValidationErrorsComponent],
   templateUrl: './flight-edit-reactive.component.html',
   styleUrls: ['./flight-edit-reactive.component.css'],
+  imports: [CommonModule, ReactiveFormsModule, ValidationErrorsComponent],
 })
 export class FlightEditReactiveComponent {
   private flightService = inject(FlightService);
