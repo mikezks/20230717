@@ -19,36 +19,9 @@ export class FlightSearchComponent {
   selectedFlight: Flight | undefined;
   message = '';
 
-  names = [
-    'Joe', 'Mary', 'Peter', 'Zoe'
-  ];
-
-  copyOfNames = [ ...this.names ];
-
-  myFlight = {
-    id: 333,
-    from: 'Bukarest',
-    to: 'Budapest',
-    date: '',
-    delayed: false,
-    passengers: [
-      {
-        id: 1,
-        firstname: 'Mary',
-        lastname: 'Doe'
-      }
-    ]
-  };
-
-  anotherFlight = {
-    ...this.myFlight,
-    id: 555,
-    passengers: []
-  };
-
   private flightService = inject(FlightService);
 
-  search(...names: string[]): void {
+  search(): void {
     // Reset properties
     this.message = '';
     this.selectedFlight = undefined;
@@ -65,7 +38,5 @@ export class FlightSearchComponent {
 
   select(f: Flight): void {
     this.selectedFlight = f;
-
-    this.search('Mary', 'Peter')
   }
 }
