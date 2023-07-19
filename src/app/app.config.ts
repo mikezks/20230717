@@ -4,5 +4,5 @@ export interface AppConfig {
 }
 
 export const appConfig: AppConfig = {
-  useService: 'dummy'
+  useService: 'default'
 };
