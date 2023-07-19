@@ -1,5 +1,4 @@
-<div>
-  <pre>Nexts Flight: {{ nextFlightsService.find() | async | json }}</pre>
-</div>
+<h2>Your Nexts Flights</h2>
+<pre>{{ flights$ | async | json }}</pre>
 
 <app-checkin />

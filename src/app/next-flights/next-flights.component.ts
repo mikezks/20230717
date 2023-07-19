@@ -7,5 +7,6 @@ import { NextFlightsService } from './next-flights.service';
   styleUrls: ['./next-flights.component.css']
 })
 export class NextFlightsComponent {
-  protected nextFlightsService = inject(NextFlightsService);
+  private nextFlightsService = inject(NextFlightsService);
+  flights$ = this.nextFlightsService.find();
 }
