@@ -3,13 +3,19 @@ import { FlightSearchComponent } from './flight-search/flight-search.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ConfigService } from './shared/config.service';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { NextFlightsModule } from "./next-flights/next-flights.module";
 
 @Component({
-  standalone: true,
-  imports: [SidebarComponent, NavbarComponent, FlightSearchComponent],
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+    standalone: true,
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    imports: [
+      SidebarComponent,
+      NavbarComponent,
+      FlightSearchComponent,
+      NextFlightsModule
+    ]
 })
 export class AppComponent {
   title = 'Hello World!';
