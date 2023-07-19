@@ -17,6 +17,7 @@
   <div class="form-group">
     <button
       class="btn btn-default"
+      [disabled]="!from || !to"
       (click)="search()"
     >
       Search
