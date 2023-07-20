@@ -4,10 +4,12 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NextFlightsModule } from './next-flights/next-flights.module';
 import { ConfigService } from './shared/config.service';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   standalone: true,
   imports: [
+    RouterOutlet,
     SidebarComponent,
     NavbarComponent,
     FlightSearchComponent,
