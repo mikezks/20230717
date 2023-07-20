@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Flight } from '../../model/flight';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { FlightService } from './flight.service';
+import { Store } from '@ngrx/store';
+import { ticketsActions, ticketsFeature } from '../+state';
 import { CityPipe } from '../../shared/city.pipe';
 import { FlightCardComponent } from '../flight-card/flight-card.component';
+import { FlightService } from './flight.service';
 
 @Component({
   selector: 'app-flight-search',
@@ -14,35 +15,27 @@ import { FlightCardComponent } from '../flight-card/flight-card.component';
   imports: [CommonModule, FormsModule, CityPipe, FlightCardComponent],
 })
 export class FlightSearchComponent {
+  private store = inject(Store);
+  private flightService = inject(FlightService);
+
   from = 'London';
   to = 'Paris';
-  flights: Array<Flight> = [];
-  selectedFlight: Flight | undefined;
-  message = '';
-
+  flights$ = this.store.select(ticketsFeature.selectFlights);
   basket: Record<number, boolean> = {
     3: true,
     5: true,
   };
 
-  private flightService = inject(FlightService);
-
-  search(): void {
-    // Reset properties
-    this.message = '';
-    this.selectedFlight = undefined;
-
+/*  */  search(): void {
     this.flightService.find(this.from, this.to).subscribe({
       next: (flights) => {
-        this.flights = flights;
+        this.store.dispatch(
+          ticketsActions.flightsLoaded({ flights })
+        )
       },
       error: (errResp) => {
         console.error('Error loading flights', errResp);
       },
     });
-  }
-
-  select(f: Flight): void {
-    this.selectedFlight = { ...f };
   }
 }
