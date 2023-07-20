@@ -3,12 +3,14 @@
     <h2 class="card-title">
       {{ item.from }} - {{ item.to }}
     </h2>
+    <ng-content></ng-content>
   </div>
 
   <div class="card-body">
     <p>Flight-No.: #{{ item.id }}</p>
     <p>Date: {{ item.date | date : "dd.MM.yyyy HH:mm" }}</p>
     <p>Delayed: {{ item.delayed }}</p>
+    <ng-content select="span.extra-info"></ng-content>
     <p>
       <button (click)="toggleSelection()" class="btn btn-default">
         {{ selected ? 'Remove' : 'Select' }}
