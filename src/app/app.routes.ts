@@ -2,7 +2,6 @@ import { Routes } from "@angular/router";
 import { AboutComponent } from "./about/about.component";
 import { HomeComponent } from "./home/home.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
-import { FLIGHT_BOOKING_ROUTES } from "./flight-booking/flight-booking.routes";
 
 export const APP_ROUTES: Routes = [
   {
@@ -18,7 +17,10 @@ export const APP_ROUTES: Routes = [
     path: 'about',
     component: AboutComponent
   },
-  ...FLIGHT_BOOKING_ROUTES,
+  {
+    path: 'flight-booking',
+    loadChildren: () => import('./flight-booking/flight-booking.routes')
+  },
   {
     path: 'not-found',
     component: NotFoundComponent
