@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { ticketsActions, ticketsFeature } from '../+state';
+import { injectTicketsFeature } from '../+state';
 import { CityPipe } from '../../shared/city.pipe';
 import { FlightCardComponent } from '../flight-card/flight-card.component';
 
@@ -14,22 +13,12 @@ import { FlightCardComponent } from '../flight-card/flight-card.component';
   imports: [CommonModule, FormsModule, CityPipe, FlightCardComponent],
 })
 export class FlightSearchComponent {
-  private store = inject(Store);
+  protected ticketsFeature = injectTicketsFeature();
 
   from = 'London';
   to = 'Paris';
-  flights$ = this.store.select(ticketsFeature.selectFlights);
   basket: Record<number, boolean> = {
     3: true,
     5: true,
   };
-
-  search(): void {
-    this.store.dispatch(
-      ticketsActions.flightsLoad({
-        from: this.from,
-        to: this.to
-      })
-    );
-  }
 }
