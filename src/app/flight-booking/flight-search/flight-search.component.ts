@@ -5,7 +5,6 @@ import { Store } from '@ngrx/store';
 import { ticketsActions, ticketsFeature } from '../+state';
 import { CityPipe } from '../../shared/city.pipe';
 import { FlightCardComponent } from '../flight-card/flight-card.component';
-import { FlightService } from './flight.service';
 
 @Component({
   selector: 'app-flight-search',
@@ -16,7 +15,6 @@ import { FlightService } from './flight.service';
 })
 export class FlightSearchComponent {
   private store = inject(Store);
-  private flightService = inject(FlightService);
 
   from = 'London';
   to = 'Paris';
@@ -26,16 +24,12 @@ export class FlightSearchComponent {
     5: true,
   };
 
-/*  */  search(): void {
-    this.flightService.find(this.from, this.to).subscribe({
-      next: (flights) => {
-        this.store.dispatch(
-          ticketsActions.flightsLoaded({ flights })
-        )
-      },
-      error: (errResp) => {
-        console.error('Error loading flights', errResp);
-      },
-    });
+  search(): void {
+    this.store.dispatch(
+      ticketsActions.flightsLoad({
+        from: this.from,
+        to: this.to
+      })
+    );
   }
 }
