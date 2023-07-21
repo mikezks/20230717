@@ -18,7 +18,10 @@ const FLIGHT_BOOKING_ROUTES: Routes = [
       },
       {
         path: 'flight-edit/:id',
-        component: FlightEditComponent
+        component: FlightEditComponent,
+        data: {
+          id: 999
+        }
       },
       {
         path: 'passenger-search',

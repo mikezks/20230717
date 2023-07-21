@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -28,6 +28,7 @@ export class FlightEditComponent {
   private route = inject(ActivatedRoute);
   flight: Flight = initFlight;
   showDetails = false;
+  @Input() id = 0;
 
   constructor() {
     this.route.paramMap.subscribe(
