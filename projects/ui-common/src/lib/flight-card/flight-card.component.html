@@ -1,7 +1,7 @@
 <div [ngClass]="{ selected: selected }" class="card">
   <div class="card-header">
     <h2 class="title">
-      {{ item.from | city : "short" }} - {{ item.to | city : "long" }}
+      {{ item.from }} - {{ item.to }}
     </h2>
   </div>
 
@@ -12,8 +12,7 @@
     <ng-content select=".middle"></ng-content>
 
     <p>
-      Delayed:
-      <app-status-toggle [(status)]="item.delayed"> </app-status-toggle>
+      Delayed: {{ item.delayed }}
     </p>
     <p>
       <button (click)="select()" *ngIf="!selected" class="btn btn-default">

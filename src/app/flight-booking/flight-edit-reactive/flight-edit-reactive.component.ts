@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Flight } from '../../model/flight';
+import { Flight } from '../../../../projects/ui-common/src/lib/model/flight';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { validateCity } from '../../shared/validation/city-validator';
 import { FlightService } from '../flight-search/flight.service';

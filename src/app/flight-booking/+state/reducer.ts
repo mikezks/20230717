@@ -1,6 +1,6 @@
-import { Flight } from './../../model/flight';
 import { createFeature, createReducer, on } from "@ngrx/store";
 import { ticketsActions } from './actions';
+import { Flight } from "@flights42/ui-common";
 
 
 export interface TicketsState {

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { injectTicketsFeature } from '../+state';
 import { CityPipe } from '../../shared/city.pipe';
-import { FlightCardComponent } from '../flight-card/flight-card.component';
+import { FlightCardComponent } from '@flights42/ui-common';
 
 @Component({
   selector: 'app-flight-search',
