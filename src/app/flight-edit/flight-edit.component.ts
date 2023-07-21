@@ -27,8 +27,8 @@ export class FlightEditComponent {
   dialogRef = inject(MatDialogRef);
   data = inject<{ flight: Flight }>(MAT_DIALOG_DATA);
 
-  /* 
-    Alternative: 
+  /*
+    Alternative:
     type FlightData = { flight: Flight };
     data = inject<FlightData>(MAT_DIALOG_DATA);
   */
