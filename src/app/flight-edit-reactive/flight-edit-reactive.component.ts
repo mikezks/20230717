@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Flight } from '../model/flight';
+import { validateCity, validateCityWithParams } from '../shared/validation/city-validator';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-flight-edit-reactive',
@@ -19,21 +21,32 @@ export class FlightEditReactiveComponent {
     id: [0],
     from: ['London', [
       Validators.required,
-      Validators.minLength(3)
+      Validators.minLength(3),
+      validateCity
     ]],
-    to: ['Paris', [
+    to: ['Bukarest', [
       Validators.required,
-      Validators.minLength(3)
+      Validators.minLength(3),
+      validateCityWithParams([
+        'Wien', 'Bukarest', 'Mumbai'
+      ])
     ]],
     date: [new Date().toISOString()]
-  });
+  }, { updateOn: 'blur' });
 
   constructor() {
     this.editForm.patchValue(this.data.flight);
+
+    this.editForm.valueChanges.pipe(
+      debounceTime(300)
+    ).subscribe(console.log);
   }
 
   save(): void {
-    console.log(this.editForm.value);
+    console.log('value', this.editForm.value);
+    console.log('valid', this.editForm.valid);
+    console.log('dirty', this.editForm.dirty);
+    console.log('touched', this.editForm.touched);
   }
 
   close(): void {
